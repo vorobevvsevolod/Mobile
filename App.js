@@ -3,16 +3,16 @@ import React from "react";
 
 import {Provider} from "react-redux";
 import { store } from "./Redux";
-import Application from "./Application";
-
-
+import {Navigation} from "./router";
 
 
 export default function App() {
-
+	
+	
         return (
             <Provider store={store}>
-                <Application/>
+	            <Navigation/>
+	            {/*<StatusBar style={'auto'}/>*/}
             </Provider>
         );
 }

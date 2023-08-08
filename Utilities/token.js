@@ -4,7 +4,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const saveAuthToken = async (token) => {
     try {
         await AsyncStorage.setItem('authToken', token);
-        console.log('Токен авторизации сохранен.');
+	    console.log('Токен авторизации сохранен.');
     } catch (error) {
         console.log('Ошибка при сохранении токена авторизации:', error);
     }

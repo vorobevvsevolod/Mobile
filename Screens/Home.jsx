@@ -1,12 +1,12 @@
 import React from 'react';
-import Header from "./componets/Header";
-import Posts from "./componets/Posts";
-import {fetchUserInfo} from "./Redux/Slice/User";
+import Header from "../componets/Header";
+import Posts from "../componets/Posts";
+import {fetchUserInfo} from "../Redux/Slice/User";
 import {useDispatch} from "react-redux";
 import {View, StyleSheet} from "react-native";
-import { StatusBar } from 'expo-status-bar';
+import Footer from "../componets/Footer";
 
-const Application = () => {
+const Home = () => {
 
     const dispatch = useDispatch();
 
@@ -21,7 +21,8 @@ const Application = () => {
             <View style={styles.container}>
                 <Posts/>
             </View>
-            {/*<StatusBar style={'auto'}/>*/}
+	        <Footer/>
+            
         </View>
     );
 };
@@ -32,4 +33,4 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Application;
+export default Home;

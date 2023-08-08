@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, Image, StyleSheet } from 'react-native';
-import UploadPhotoButton from "./UploadImages";
+import LinktoNewPost from "./LinktoNewPost";
 
 const styles = StyleSheet.create({
     container: {
@@ -34,9 +34,8 @@ const Header = () => {
                 <Image source={require('../assets/icon.png')} style={styles.logo} />
                 <Text style={styles.title}>Kidsnet</Text>
             </View>
-
             <View>
-                <UploadPhotoButton />
+                <LinktoNewPost/>
             </View>
         </View>
     );

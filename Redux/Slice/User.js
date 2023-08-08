@@ -1,14 +1,16 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit';
 import axios from "axios";
-import {getAuthToken} from "../../token";
+import {getAuthToken} from "../../Utilities/token";
 
 export const fetchUserInfo = createAsyncThunk('userInfo/fetchUserInfo', async () =>{
     const idUser = await getAuthToken().then(async (res) => {
         return res
     })
-
-    const { data } = await axios.get('https://64ab30660c6d844abedf3a82.mockapi.io/users/'+ idUser)
-    return data
+	
+	const userId = await getAuthToken();
+	
+	const { data } = await axios.get('https://64ab30660c6d844abedf3a82.mockapi.io/users/'+ idUser)
+    return {...data, userId: userId}
 })
 
 const UserSlice = createSlice({
@@ -20,10 +22,14 @@ const UserSlice = createSlice({
         avatar:'',
         createdAt: '',
         email:'',
-        token:''
+        token:'',
+	    userId: null,
+	    favoritePost: []
     },
     reducers:{
-
+		setFavoritePost: (state, action) =>{
+			state.favoritePost = action.payload;
+		}
     },
     extraReducers: (builder) => {
     builder
@@ -35,12 +41,14 @@ const UserSlice = createSlice({
             state.avatar = action.payload.avatar;
             state.email = action.payload.email;
             state.token = action.payload.token;
-
+            state.userId = action.payload.userId;
+			state.favoritePost = action.payload.favoritePost;
         })
         .addCase(fetchUserInfo.rejected, (state, action) => {
         })
     }
 })
 
-
+export const { setFavoritePost } = UserSlice.actions;
 export const UserInfo = UserSlice.reducer;
+
